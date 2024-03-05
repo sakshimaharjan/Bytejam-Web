@@ -1,32 +1,19 @@
-<<<<<<< HEAD
-let randomNumber = Math.floor(Math.random() * 20) + 1;
-
-let guessField = document.getElementById("guessField");
-let message = document.getElementById("message");
+let diceNumber = Math.floor(Math.random() * 6) + 1;
 
 function checkGuess() {
-    let userGuess = parseInt(guessField.value);
-    
-=======
+    rollDice();  // Roll the dice when the user submits a guess
+    const guess = document.getElementById('guessField').value;
+    const message = document.getElementById('message');
 
-let randomNumber = Math.floor(Math.random() * 20) + 1;
-
-
-let guessField = document.getElementById("guessField");
-let message = document.getElementById("message");
-
-
-function checkGuess() {
-    
-    let userGuess = parseInt(guessField.value);
-    
-    
->>>>>>> 374874e2c83bb5f360dcbcafbc6848e366b7cbc3
-    if (userGuess === randomNumber) {
-        message.innerHTML = `Congratulations! You guessed the correct number (${randomNumber})!`;
-    } else if (userGuess < randomNumber) {
-        message.innerHTML = "Too low. Try again.";
-    } else if (userGuess > randomNumber) {
-        message.innerHTML = "Too high. Try again.";
+    if (guess == diceNumber) {
+        message.textContent = 'Congratulations! You guessed right.';
+    } else {
+        message.textContent = 'Sorry, try again.';
     }
+}
+
+function rollDice() {
+    diceNumber = Math.floor(Math.random() * 6) + 1;
+    const diceResult = document.getElementById('diceResult');
+    diceResult.textContent = 'Dice rolled: ' + diceNumber;
 }
