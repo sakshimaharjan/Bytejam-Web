@@ -1,19 +1,31 @@
 let diceNumber = Math.floor(Math.random() * 6) + 1;
+let guessMade = false;
 
 function checkGuess() {
-    rollDice();  // Roll the dice when the user submits a guess
     const guess = document.getElementById('guessField').value;
     const message = document.getElementById('message');
 
-    if (guess == diceNumber) {
-        message.textContent = 'Congratulations! You guessed right.';
+    if (guess) {
+        guessMade = true;
+        rollDice(); 
+
+        if (guess == diceNumber) {
+            message.textContent = 'Congratulations! You guessed right.';
+        } else {
+            message.textContent = 'Sorry, try again.';
+        }
     } else {
-        message.textContent = 'Sorry, try again.';
+        message.textContent = 'Please enter a guess first.';
     }
 }
 
 function rollDice() {
-    diceNumber = Math.floor(Math.random() * 6) + 1;
     const diceResult = document.getElementById('diceResult');
-    diceResult.textContent = 'Dice rolled: ' + diceNumber;
+
+    if (!guessMade) {
+        diceResult.textContent = 'Guess the number first.';
+    } else {
+        diceNumber = Math.floor(Math.random() * 6) + 1;
+        diceResult.textContent = 'Dice rolled: ' + diceNumber;
+    }
 }
